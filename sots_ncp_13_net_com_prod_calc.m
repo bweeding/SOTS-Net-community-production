@@ -1,9 +1,9 @@
-% Here net community production is estimated, first in micromoles of Oxygen
+% ##### make sure units are correct! Here net community production is estimated, first in micromoles of Oxygen
 % per m^2 per hour, then in milligrams of Carbon per m^2 per hour. These
 % can then be summed over the entire time series using cumsum().
 
 
-% O2 records are differentiated wrt time, depending on which excahnge_choice
+% O2 records are differentiated wrt time, depending on which exchange_choice
 % has been set
 mooring_data.ddox2_dt_umkg = diff(mooring_data.dox2_umolkg);
 
@@ -29,7 +29,7 @@ end
  
 mooring_data.ddox2bio_dt_umkg = mooring_data.ddox2_dt_umkg - mooring_data.ddox2_phys_dt_umkg;
  
-% As 'diff' reduces the length of a vector by 1, the final
+% ####  change this to 0!!! As 'diff' reduces the length of a vector by 1, the final
 % value of mooring_data.dDOX2bio_dt_um_kg_ent is added onto the end of the
 % vector.
  

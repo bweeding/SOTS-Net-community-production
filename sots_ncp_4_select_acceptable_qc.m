@@ -62,4 +62,6 @@ for i = 1:length(var_names)
     
 end
 
+disp(['Acceptable data starts at ',datestr(mooring_data.time(1))])
 
+disp(['Acceptable data end at ',datestr(mooring_data.time(end))])

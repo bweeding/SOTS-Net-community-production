@@ -9,12 +9,12 @@
 % 2. mooring_data.gastension_Pa = GTD pressure in Pa
 % 3. mooring_data.dox2_umolkg = Dissolved Oxygen concentration in umol/kg
 % 4. mooring_data.mld_m = mixed layer depth in meters
-% 6. mooring_data.temp_C = mixed layer temperature in C
-% 7. mooring_data.psal_PSU = mixed layer salinity in psu
-% 8. mooring_data.windspeed_ms = wind speed at 10m height in m s-1
-% 9. mooring_data.atmosphericpress_Pa = atmospheric pressure at sea level in Pa 
+% 5. mooring_data.temp_C = mixed layer temperature in C
+% 6. mooring_data.psal_PSU = mixed layer salinity in psu
+% 7. mooring_data.windspeed_ms = wind speed at 10m height in m s-1
+% 8. mooring_data.atmosphericpress_Pa = atmospheric pressure at sea level in Pa 
 % (a default value can be set if not available) 
-% 10. mooring_data.dox2_submld_umolkg = subsurface oxygen concentration
+% 9. mooring_data.dox2_submld_umolkg = subsurface oxygen concentration
 % (a default value can be set if not available)
 
 
@@ -87,6 +87,11 @@ atmospheric_pressure_choice = 1;
 % not available. The presence of a timeseries
 % (mooring_data.atmosphericpress_Pa) will override this value.
 
+atmospheric_pressure_manual_override = 0;
+
+% Setting 'atmospheric_pressure_manual_override' to 1 will override the available 
+% atmospheric pressure vector from the mooring, and use the user specified constant
+
 %% Choice 6. Set the default subsurface oxygen concentration if the variable is not available
 
 sub_mld_dox2_choice = 0.264;
@@ -96,10 +101,15 @@ sub_mld_dox2_choice = 0.264;
 % will override any value given here. 0.264 at a density of 1029.15kg/m^3
 % (typical 500m density) corresponds to ~256.5umol/kg
  
+sub_mld_dox2_manual_override = 0;
+
+% Setting 'sub_mld_dox2_manual_override' to 1 will override the available 
+% sub MLD O2 vector from the mooring, and use the user specified constant
+
 
 %% Choice 7. Decide whether to include eddy diffusion andentrainment
 
-exchange_choice = 1;
+exchange_choice = 3;
 
 % 1: only air-sea exchange and bubbles
 % 2: option 1 plus eddy diffusion 
@@ -122,7 +132,7 @@ qc_limit = 3;
 % 5. Eddy_diff_oxygen       % hourly timeseries of eddy diffused oxygen (from below MLD) in moles per cubic metre
 % 6. Gas_exchange_oxygen    % hourly timeseries of oxygen exchanged into water from atmosphere in moles per cubic metre
 
-% Cumulatively summed timeseries of NCP are available in the mooring_data structure
+% Cumulatively summed timeseries of NCP per square metre are available in the mooring_data structure
 % ie. mooring_data.ncp_O2_umm2_cumsum and mooring_data.ncp_C_mgm2_cumsum
 %% Run the scripts
 

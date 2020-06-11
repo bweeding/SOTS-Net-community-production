@@ -1,8 +1,12 @@
 % Calculates oxygen saturation and concentration
 
 %%
+
+% add code to multiply dox2 sol by relative atmospheric pressure (compare
+% to 1atm)
+
 % Calculate oxygen saturation
-mooring_data.dox2_sat = mooring_data.dox2_umolkg./mooring_data.dox2_sol_umolkg;
+mooring_data.dox2_sat = mooring_data.dox2_umolkg./(mooring_data.dox2_sol_umolkg.*(mooring_data.atmosphericpress_Pa/constants.atm_in_Pa));
 
 mooring_data.dox2_sat_qc = max(mooring_data.dox2_umolkg_qc,mooring_data.dox2_sol_umolkg_qc);
 

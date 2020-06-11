@@ -1,5 +1,9 @@
 % Loads the constants used throughout the SOTS NCP calculation
-%% sots_ncp_gas_records
+% Constants are listed under the script in which they are first used
+%% sots_ncp_8_O2_converter
+constants.atm_in_Pa = 101325;
+
+%% sots_ncp_8_gas_records
 
 % N2 constants from Table 4 of Hamme and Emerson 2004
 constants.A0_n2 = 6.42931;
@@ -61,7 +65,7 @@ constants.Sc_B_N2_W92 = 144.86;
 constants.Sc_C_N2_W92 = 4.5413;
 constants.Sc_D_N2_W92 = 0.056988;
 
-%% sots_ncp_N2_excahnge
+%% sots_ncp_10_N2_excahnge
 
 % Molecular diffusion, using Ferrell and Himmelblau (1967).
 % Activation energies
@@ -73,5 +77,5 @@ constants.Ac_O2 = 4286;
 constants.Ac_N2 = 3412;
 
 %% sots_ncp_net_com_prod_calc
-
+% This is the NCP ratio of carbon to O2 from Anderson and Sarmiento (1994)
 constants.redfield_AS_1994 = 1.45;

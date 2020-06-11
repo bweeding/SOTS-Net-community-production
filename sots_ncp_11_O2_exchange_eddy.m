@@ -9,19 +9,21 @@
 % We assign values to the submld oxygen record according to whether it
 % comes from the mooring data, or a user choice
 
-if isfield(mooring_data,'sub_mld_dox2_umolkg')
-    
-    mooring_data.sub_mld_dox2_molm3 = mooring_data.sub_mld_dox2_umolkg.*mooring_data.density_kgm3/(1E6);
-    
-elseif length(sub_mld_dox2_choice) == length(mooring_data.time)
-    
-    mooring_data.sub_mld_dox2_molm3 = sub_mld_dox2_choice;
-    
-elseif length(sub_mld_dox2_choice) == 1
+if ~isfield(mooring_data,'sub_mld_dox2_umolkg') || sub_mld_dox2_manual_override
     
     mooring_data.sub_mld_dox2_molm3 = sub_mld_dox2_choice * ones(size(mooring_data.time));
     
+    disp(['Sub MLD O2: user specified constant of ',num2str(sub_mld_dox2_choice),'mol/m^3 used.'])
+    
+else 
+    
+    mooring_data.sub_mld_dox2_molm3 = mooring_data.sub_mld_dox2_umolkg.*mooring_data.density_kgm3/(1E6);
+   
+    disp('Sub MLD O2: Timeseries available from mooring used')
+    
 end
+
+
 
 % We preallocate zero arrays used in the for loop
 
@@ -56,10 +58,9 @@ for i = 2:length(mooring_data.time)
     
     mooring_data.dox2_phys_bubbles_ent_molm3(i) = 3600/mooring_data.mld_smooth(i)*mooring_data.Vinj(i-1)*constants.mole_fraction_O2*(1+1/bubble_beta);
     
-    % We calculate the eddy diffusion effect, using a below MLDP value for
-    % O2 of 264E-3 moles per m^3, dividing this by 10m as an estimate of
+    % We calculate the eddy diffusion effect, using a below ####, dividing this by 10m as an estimate of
     % the thickness of the transition layer between the mixed layer and
-    % deep water, following the form of the equation in King and Devol
+    % deep water, which then determines the gradient, following the form of the equation in King and Devol
     % (1979).
     
     mooring_data.dox2_phys_eddy_diffusion_ent_molm3(i) = (3600/mooring_data.mld_smooth(i))*eddy_diff_coeff*((mooring_data.sub_mld_dox2_molm3(i))-mooring_data.dox2_phys_ent_molm3(i-1))/10;

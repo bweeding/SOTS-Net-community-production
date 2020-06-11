@@ -55,33 +55,3 @@ datetick(gca,'KeepLimits')
 grid on
 
 
-%% Old automatic plot, not grouped
-% % Collects variable names from the mooring data
-% var_names_to_plot = fieldnames(mooring_data);
-% 
-% % Removes qc variables
-% var_names_to_plot = var_names_to_plot(~contains(var_names_to_plot,'qc'));
-% 
-% % Removes time variable
-% var_names_to_plot = var_names_to_plot(~contains(var_names_to_plot,'time'));
-
-% % Plot each variable, colouring by qc value when available
-% for i = 1:length(var_names_to_plot)
-%     
-%     if any(contains(fieldnames(mooring_data),strcat(var_names_to_plot{i},'_qc')))
-%         figure
-%         scatter(mooring_data.time,mooring_data.(var_names_to_plot{i}),10,mooring_data.(strcat(var_names_to_plot{i},'_qc')))
-%         c = lines(9);
-%         colormap(c);
-%         colorbar
-%         title(var_names_to_plot{i})
-%         
-%     else
-%         figure
-%         scatter(mooring_data.time,mooring_data.(var_names_to_plot{i}),10)
-%         c = lines(9); 
-%         title(var_names_to_plot{i})
-%     end
-% 
-% end
-

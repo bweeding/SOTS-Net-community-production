@@ -129,7 +129,7 @@ function [mooring_data] = sots_ncp_extractor(deployment)
 
         mooring_data.mld_m_qc = pulse7.MLD_quality_control;
 
-        % Use Eric's simulated wind speeds
+        % Use Eric's simulated wind speeds (Eric Schulz BOM 10m winds)
         load('Pulse_7_Eric_wind_sim.mat','wind_sim_total');
 
         mooring_data.windspeed_ms = wind_sim_total;
