@@ -69,12 +69,18 @@ constants.Sc_D_N2_W92 = 0.056988;
 
 % Molecular diffusion, using Ferrell and Himmelblau (1967).
 % Activation energies
-constants.Ea_O2 = 18.70; 
-constants.Ea_N2 = 18.50;
+constants.Ea_O2 = -18.70; 
+constants.Ea_N2 = -18.50;
 
 % Maximum diffusion coefficients
 constants.Ac_O2 = 4286;
 constants.Ac_N2 = 3412;
+
+% Gas constant
+constants.gas_constant = 8.3144621;
+
+% Salinity adjustment
+constants.Jahne_sal_co = 0.049;
 
 %% sots_ncp_net_com_prod_calc
 % This is the NCP ratio of carbon to O2 from Anderson and Sarmiento (1994)

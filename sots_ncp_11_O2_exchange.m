@@ -9,6 +9,8 @@
 
 % We create a vector representing the physical oxygen record without
 % entrainment, and set its first value to the first measured oxygen value.
+% The physical records here are labelled with no_ent, as neither eddy diffusion
+% nor entrainment across the mixed layer have been taken into account.
 
 mooring_data.dox2_phys_no_ent_molm3 = zeros(size(mooring_data.dox2_umolkg));
 

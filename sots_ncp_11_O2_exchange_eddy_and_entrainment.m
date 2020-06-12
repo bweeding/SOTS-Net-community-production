@@ -27,8 +27,10 @@ end
 
 [mooring_data.GE_dox2_phys_ent_molm3, mooring_data.dox2_phys_gas_exchange_ent_molm3, mooring_data.dox2_phys_bubbles_ent_molm3,mooring_data.dox2_phys_entrainment_ent_molm3, mooring_data.dox2_phys_eddy_diffusion_ent_molm3, mooring_data.dox2_phys_ent_molm3] = deal(zeros(size(mooring_data.time)));
 
-% We create a vector representing the physical oxygen record without
-% entrainment, and set its first value to the first measured oxygen value.
+% We create a vector representing the physical oxygen record with eddy diffusion, 
+% and set its first value to the first measured oxygen value. The physical
+% records are labelled with ent, as some form of entrainment has been taken into 
+% account.
 
 mooring_data.dox2_phys_ent_molm3 = zeros(size(mooring_data.dox2_umolkg));
 
@@ -59,6 +61,10 @@ for i = 2:length(mooring_data.time)
     % We calulcate the entrainment effect by multiplying the difference
     % between measured O2 and subsurface O2 by the deeping of the mixed
     % layer, divided through by the total depth of the mixed layer.
+    % mld_diff is a vector of the increasing MLDs, calculated back in 
+    % script 10 as it may be needed if N2 variations with depth are 
+    % introduced. For times where MLD is constant or decreasing/shoaling, 
+    % it has a value of 0.
     
     mooring_data.dox2_phys_entrainment_ent_molm3(i) = ((mooring_data.sub_mld_dox2_molm3(i))-mooring_data.dox2_phys_ent_molm3(i-1))*(mooring_data.mld_diff(i-1))/mooring_data.mld_smooth(i);
     
@@ -68,7 +74,7 @@ for i = 2:length(mooring_data.time)
     % deep water, which determines the gradient, following the form of the equation in King and Devol
     % (1979).
     
-    mooring_data.dox2_phys_eddy_diffusion_ent_molm3(i) = (3600/mooring_data.mld_smooth(i))*eddy_diff_coeff*((mooring_data.sub_mld_dox2_molm3(i))-mooring_data.dox2_phys_ent_molm3(i-1))/10;
+    mooring_data.dox2_phys_eddy_diffusion_ent_molm3(i) = (3600/mooring_data.mld_smooth(i))*eddy_diff_coeff*((mooring_data.sub_mld_dox2_molm3(i))-mooring_data.dox2_phys_ent_molm3(i-1))/eddy_gradient_thickness_m;
     
 
     

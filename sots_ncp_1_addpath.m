@@ -4,4 +4,4 @@
 addpath('/Users/tru050/Desktop/SOTS/SOTS work/SOTS netcdfs from Pete/Current netcdfs')
 
 % Folder containing code
-addpath('/Users/tru050/Desktop/SOTS/SOTS work/SOTS ncp calculator 2020')
+addpath('/Users/tru050/Documents/GitHub/SOTS-Net-community-production')

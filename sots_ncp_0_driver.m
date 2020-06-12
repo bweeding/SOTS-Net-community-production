@@ -64,12 +64,16 @@ bubble_beta = 1;
 % the sensitivity of NCP to this unknown aspect of the fate of injected 
 % bubbles. See Emerson et al. 2008 (eqn 7) for further information. 
 
-%% Choice 3. Set the vertical eddy diffusivity
+%% Choice 3. Set the vertical eddy diffusivity and gradient thickness
 
-eddy_diff_coeff = 1E-4;
+eddy_diff_coeff = 0.33E-4;
 
-% The default eddy diffusivity coefficient is 1E-4, in m^2s^-1, following 
-% the work of Emerson et al. 2008 at 1 cm^2s^-1 = 1E-4 m^2s^-1.
+% The default eddy diffusivity coefficient is 0.33x10^-4 in m^2 s^-1 from
+% Law et al. 2003 .
+
+eddy_gradient_thickness_m = 50;
+
+% The default value is 50m from Weeding and Trull 2014
 
 %% Choice 4. Set the time span over which the MLD estimates are smoothed prior to use 
 

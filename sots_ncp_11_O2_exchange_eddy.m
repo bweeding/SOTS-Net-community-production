@@ -29,13 +29,14 @@ end
 
 [mooring_data.GE_dox2_phys_ent_molm3, mooring_data.dox2_phys_gas_exchange_ent_molm3, mooring_data.dox2_phys_bubbles_ent_molm3, mooring_data.dox2_phys_eddy_diffusion_ent_molm3, mooring_data.dox2_phys_ent_molm3] = deal(zeros(size(mooring_data.time)));
 
-% We create a vector representing the physical oxygen record without
-% entrainment, and set its first value to the first measured oxygen value.
+% We create a vector representing the physical oxygen record with eddy diffusion, 
+% and set its first value to the first measured oxygen value. The physical
+% records are labelled with ent, as some form of entrainment has been taken into 
+% account.
 
 mooring_data.dox2_phys_ent_molm3 = zeros(size(mooring_data.dox2_umolkg));
 
 mooring_data.dox2_phys_ent_molm3(1) = mooring_data.dox2_molm3(1);
-
 
 for i = 2:length(mooring_data.time)
     
@@ -63,7 +64,7 @@ for i = 2:length(mooring_data.time)
     % deep water, which then determines the gradient, following the form of the equation in King and Devol
     % (1979).
     
-    mooring_data.dox2_phys_eddy_diffusion_ent_molm3(i) = (3600/mooring_data.mld_smooth(i))*eddy_diff_coeff*((mooring_data.sub_mld_dox2_molm3(i))-mooring_data.dox2_phys_ent_molm3(i-1))/10;
+    mooring_data.dox2_phys_eddy_diffusion_ent_molm3(i) = (3600/mooring_data.mld_smooth(i))*eddy_diff_coeff*((mooring_data.sub_mld_dox2_molm3(i))-mooring_data.dox2_phys_ent_molm3(i-1))/eddy_gradient_thickness_m;
     
 
     

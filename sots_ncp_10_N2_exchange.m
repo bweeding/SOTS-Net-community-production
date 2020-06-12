@@ -27,17 +27,24 @@ end
 
 
 % are we converting when we have already done it??
-mooring_data.GE_N2 = mooring_data.Gc_N2_ms.*((mooring_data.Sc_N2/600).^(-0.5)).*(mooring_data.N2_molm3 - (mooring_data.atmosphericpress_Pa/constants.atm_in_Pa).*mooring_data.N2sol_molm3);
-    
-%mooring_data.GE_N2 = mooring_data.Gc_N2_ms.*(mooring_data.N2_molm3 - (mooring_data.atmosphericpress_Pa/constants.atm_in_Pa).*mooring_data.N2sol_molm3);
+%mooring_data.GE_N2 = mooring_data.Gc_N2_ms.*((mooring_data.Sc_N2/600).^(-0.5)).*(mooring_data.N2_molm3 - (mooring_data.atmosphericpress_Pa/constants.atm_in_Pa).*mooring_data.N2sol_molm3);
+
+% REVIEW with TT: fix so that we aren't scaling for Schmidt twice? Only happening for N2
+mooring_data.GE_N2 = mooring_data.Gc_N2_ms.*(mooring_data.N2_molm3 - (mooring_data.atmosphericpress_Pa/constants.atm_in_Pa).*mooring_data.N2sol_molm3);
   
 % In order to estiamte gas injections due to bubbles, we need to estimate
-% molecular diffusion, using Ferrell and Himmelblau (1967).
+% molecular diffusion.
 
+%    O2 and N2 freshwater values from  Ferrell and Himmelblau, 1967.
+%       "Diffusion coefficients of nitrogen and oxygen in water"
+%       J. Chem. Eng. Data, 12(1), 111-115, doi: 10.1021/je60032a036.
+%    Correction for salinity is based on Jahne's observed average 4.9% decrease in 
+%       diffusivity for H2 and He in 35.5 ppt NaCl solution
+% Roberta Hamme 2013
 
-mooring_data.MDiff_O2 = (constants.Ac_O2*exp(-constants.Ea_O2./(0.0083144621*(mooring_data.temp_C+273.15))))*(10^-5).*(1 - 0.049*mooring_data.psal_PSU/35.5); % in cm^2 per s
+mooring_data.MDiff_O2 = (constants.Ac_O2*exp(constants.Ea_O2./(constants.gas_constant*1E-3*(mooring_data.temp_C+273.15))))*(1E-5).*(1 - constants.Jahne_sal_co*mooring_data.psal_PSU/35.5); % in cm^2 per s
 
-mooring_data.MDiff_N2 = (constants.Ac_N2*exp(-constants.Ea_N2./(0.0083144621*(mooring_data.temp_C+273.15))))*(10^-5).*(1 - 0.049*mooring_data.psal_PSU/35.5); % in cm^2 per s
+mooring_data.MDiff_N2 = (constants.Ac_N2*exp(constants.Ea_N2./(constants.gas_constant*1E-3*(mooring_data.temp_C+273.15))))*(1E-5).*(1 - constants.Jahne_sal_co*mooring_data.psal_PSU/35.5); % in cm^2 per s
 
 
 % We smooth the mixed layer depth time series, differentiate wrt time, and
@@ -71,7 +78,7 @@ for i = 2:length(mooring_data.time)
     
     mooring_data.N2_bubbles_molm3(i-1) = mooring_data.N2_molm3(i) - mooring_data.N2_molm3(i-1) - mooring_data.N2_gas_ex_molm3(i-1);
     
-    % This rearranges eqn 9 from Emerson et al. 2008 to solve for Vinj
+    % This rearranges eqn 9 from Emerson et al. 2008 to solve for Vinj, in units of moles per square metre per second
     mooring_data.Vinj(i-1) = mooring_data.N2_bubbles_molm3(i-1)/(3600*constants.mole_fraction_N2*(1+(1/bubble_beta)*((mooring_data.MDiff_N2(i-1)/mooring_data.MDiff_O2(i-1))^(0.5))*(mooring_data.N2sol_umkg(i-1)/mooring_data.dox2_sol_umolkg(i-1)))/mooring_data.mld_smooth(i)); 
     
 end
