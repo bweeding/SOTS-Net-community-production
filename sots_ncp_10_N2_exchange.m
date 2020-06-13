@@ -83,10 +83,10 @@ for i = 2:length(mooring_data.time)
     
 end
 
-% We set the final timestamps value for Vinj to the previous value, as we
-% have no way of calculating it
+% As the calculation of at a timestamp Vinj requires the N2 value for the 
+% timestamp ahead of it, we assign the final Vinj value as Nan.
 
-mooring_data.Vinj(length(mooring_data.time)) = mooring_data.Vinj(length(mooring_data.time)-1);
+mooring_data.Vinj(length(mooring_data.time)) = nan;
 
 
 

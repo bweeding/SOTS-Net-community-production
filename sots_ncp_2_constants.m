@@ -85,3 +85,5 @@ constants.Jahne_sal_co = 0.049;
 %% sots_ncp_net_com_prod_calc
 % This is the NCP ratio of carbon to O2 from Anderson and Sarmiento (1994)
 constants.redfield_AS_1994 = 1.45;
+
+constants.atomic_mass_C = 12.0107;

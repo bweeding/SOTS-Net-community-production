@@ -1,4 +1,4 @@
-% ##### make sure units are correct! Here net community production is estimated, first in micromoles of Oxygen
+% Here net community production is estimated, first in micromoles of Oxygen
 % per m^2 per hour, then in milligrams of Carbon per m^2 per hour. These
 % can then be summed over the entire time series using cumsum().
 
@@ -29,11 +29,9 @@ end
  
 mooring_data.ddox2bio_dt_umkg = mooring_data.ddox2_dt_umkg - mooring_data.ddox2_phys_dt_umkg;
  
-% ####  change this to 0!!! As 'diff' reduces the length of a vector by 1, the final
-% value of mooring_data.dDOX2bio_dt_um_kg_ent is added onto the end of the
-% vector.
+% The final value is set to nan, as we are unable to calculate it.
  
-mooring_data.ddox2bio_dt_umkg(end+1) = mooring_data.ddox2bio_dt_umkg(end);
+mooring_data.ddox2bio_dt_umkg(end+1) = nan;
  
 % The above process is repeated but in moles m^3
 if exchange_choice==1
@@ -50,6 +48,10 @@ elseif exchange_choice==4
 end
 
 mooring_data.ddox2bio_dt_molm3 = mooring_data.ddox2_dt_molm3 - mooring_data.ddox2phys_dt_molm3;
+
+% The final value is set to nan, as we are unable to calculate it.
+
+mooring_data.ddox2bio_dt_molm3(end+1) = nan;
  
 % The NCP is calculated in micromoles of O2 per m^2 per hour, by
 % multiplying the calculated rate per cubic metre by the mixed layer depth
@@ -61,13 +63,13 @@ mooring_data.ncp_O2_umm2hr = mooring_data.ddox2bio_dt_umkg.*mooring_data.mld_smo
 % by 1E6 and a default Redfield ratio of 1.45 (Anderson and Sarmiento, 1994), 
 % and multiplying by the molar mass of Carbon, and 1000.
  
-mooring_data.ncp_C_mgm2hr = mooring_data.ncp_O2_umm2hr/((1E6)*constants.redfield_AS_1994)*12.0107*1000;
+mooring_data.ncp_C_mgm2hr = mooring_data.ncp_O2_umm2hr/((1E6)*constants.redfield_AS_1994)*constants.atomic_mass_C*1000;
 
 
 % The NCP estimates are cummulatively summed to arrive at cummulative time
 % series, with the total NCP for the timeseries being the final value of
 % each vector
 
-mooring_data.ncp_C_mgm2_cumsum = cumsum(mooring_data.ncp_C_mgm2hr);
+mooring_data.ncp_C_mgm2_cumsum = cumsum(mooring_data.ncp_C_mgm2hr,'omitnan');
 
-mooring_data.ncp_O2_umm2_cumsum = cumsum(mooring_data.ncp_O2_umm2hr);
+mooring_data.ncp_O2_umm2_cumsum = cumsum(mooring_data.ncp_O2_umm2hr,'omitnan');
