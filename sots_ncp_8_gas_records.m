@@ -55,7 +55,7 @@ mooring_data.Henry_law_constant_N2 = mooring_data.N2sol_umkg.*(1./((1-mooring_da
 % We now use our own modificaiton of Eqn. 1 from Emerson 2008 to calculate
 % the partial pressure of N2 in the water (in atm).
 
-mooring_data.N2_partial_pressure_atm = ((mooring_data.gastension_Pa/(101325)) - mooring_data.vapour_press_atm - (mooring_data.dox2_sol_umolkg./mooring_data.Henry_law_constant_O2))*(constants.mole_fraction_N2/(constants.mole_fraction_N2+constants.mole_fraction_Ar+constants.mole_fraction_CO2));
+mooring_data.N2_partial_pressure_atm = ((mooring_data.gastension_Pa/(101325)) - mooring_data.vapour_press_atm - (mooring_data.dox2_umolkg./mooring_data.Henry_law_constant_O2))*(constants.mole_fraction_N2/(constants.mole_fraction_N2+constants.mole_fraction_Ar+constants.mole_fraction_CO2));
 
 % We now calculate the timeseries of N2 
 
