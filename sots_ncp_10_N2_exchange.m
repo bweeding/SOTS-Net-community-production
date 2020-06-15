@@ -25,11 +25,6 @@ end
 % water in moles per m^2 per s, as described in Emerson et al. 2008, eqns 4
 % and 5.
 
-
-% are we converting when we have already done it??
-%mooring_data.GE_N2 = mooring_data.Gc_N2_ms.*((mooring_data.Sc_N2/600).^(-0.5)).*(mooring_data.N2_molm3 - (mooring_data.atmosphericpress_Pa/constants.atm_in_Pa).*mooring_data.N2sol_molm3);
-
-% REVIEW with TT: fix so that we aren't scaling for Schmidt twice? Only happening for N2
 mooring_data.GE_N2 = mooring_data.Gc_N2_ms.*(mooring_data.N2_molm3 - (mooring_data.atmosphericpress_Pa/constants.atm_in_Pa).*mooring_data.N2sol_molm3);
   
 % In order to estiamte gas injections due to bubbles, we need to estimate
