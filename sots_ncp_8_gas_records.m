@@ -41,8 +41,15 @@ mooring_data.vapour_press_atm = mooring_data.vapour_press_kPa/101.325;
 % calculations. 
 
 % We now calculate the Henry's law constants in um/(kg*atm), where the
+<<<<<<< HEAD
 % pressure is the partial pressure of the relevant gas. DO WE NEED TO
 % INVOLVE ATMOSPHERIC PRESSURE HERE?
+=======
+% pressure is the partial pressure of the relevant gas. 
+% The solubility variables are calculated at measured T,S, assuming a wet standard atmosphere.
+% The corresponding partial pressure of the gas (O2 or N2) is calculated from the dry atmosphere mole fractions, 
+% and must thus be corrected for  the presence of water vapour, to yield Henry's law constants for the wet atmosphere.
+>>>>>>> f39a002288268366fe39bd163574eb0080b5f6a5
 
 mooring_data.Henry_law_constant_O2 = mooring_data.dox2_sol_umolkg.*(1./((1-mooring_data.vapour_press_atm)*constants.mole_fraction_O2));
 
