@@ -1,8 +1,8 @@
 % Southern Ocean Time Series Net Community Production driver script
-% B Weeding and T Trull 2020
+% B Weeding and T W Trull 2020
 
 % This script reads input data and calls other scripts to calculate NCP from times series observations.
-% Comments are in normal script.  Commands are in bold script.
+
 
 % The input data must include time series of the following variables, or default choices: 
 % 1. mooring_data.time = the times of the observations in format:
@@ -73,7 +73,8 @@ eddy_diff_coeff = 0.33E-4;
 
 eddy_gradient_thickness_m = 50;
 
-% The default value is 50m from Weeding and Trull 2014
+% The default value is 50m from Weeding and Trull 2014, based on CTD and Argo O2 profiles at SOTS
+% if a subsurface O2 record is used, this depth should be evaluated to match the sensor spacing and associated O2 gradients
 
 %% Choice 4. Set the time span over which the MLD estimates are smoothed prior to use 
 
@@ -84,6 +85,12 @@ mld_smooth_span = 24;
 % different oxygen contents
 
 %% Choice 5. Set the default atmospheric pressure if the variable is not available
+%If there is an atmospheric pressure record, it is used by default.
+%To set a constant atmospheric pressure, set:
+%atmospheric_pressure_manual_overide=1
+%and your choice of atmospheric pressure in atmospheres, e.g. for 1 atm=101325Pa, set:
+%atmospheric_pressure_choice = 1
+%[the default value of atmospheric_pressure_choice is 0]
 
 atmospheric_pressure_choice = 1;
 
@@ -98,6 +105,12 @@ atmospheric_pressure_manual_override = 0; % default 0
 % as set by atmospheric_pressure_choice (in atm).
 
 %% Choice 6. Set the default subsurface oxygen concentration if the variable is not available
+%If there is a subsurface oxygen concentration, it is used by default.
+%To set a constant subsurface oxygen concentration, set:
+%sub_mld_dox2_manual_override =1
+%and your choice of subsurface oxygen concentration in moles m-3, e.g. for 264 uM oxygen, set:
+%sub_mld_dox2_choice = 0.264;
+%[the default value of sub_mld_dox2_choice is 0]
 
 sub_mld_dox2_choice = 0.264;
 
