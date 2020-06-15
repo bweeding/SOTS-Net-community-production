@@ -9,7 +9,7 @@
 mooring_data.temp_scaled = log((298.15 - mooring_data.temp_C)./(273.15 + mooring_data.temp_C));
  
 % Eqn (1) of Hamme and Emerson 2004
-mooring_data.N2sol_umkg = exp(constants.A0_n2 + constants.A1_n2*mooring_data.temp_scaled + constants.A2_n2*mooring_data.temp_scaled.^2 + constants.A3_n2*mooring_data.temp_scaled.^3 + mooring_data.psal_PSU.*(constants.B0_n2 + constants.B1_n2*mooring_data.temp_scaled + constants.B2_n2*mooring_data.temp_scaled.^2));
+mooring_data.N2sol_umolkg = exp(constants.A0_n2 + constants.A1_n2*mooring_data.temp_scaled + constants.A2_n2*mooring_data.temp_scaled.^2 + constants.A3_n2*mooring_data.temp_scaled.^3 + mooring_data.psal_PSU.*(constants.B0_n2 + constants.B1_n2*mooring_data.temp_scaled + constants.B2_n2*mooring_data.temp_scaled.^2));
 
 %%
 % Calculation of vapour pressure of seawater from Wagner and Pruss (2002)
@@ -50,7 +50,7 @@ mooring_data.vapour_press_atm = mooring_data.vapour_press_kPa/101.325;
 
 mooring_data.Henry_law_constant_O2 = mooring_data.dox2_sol_umolkg.*(1./((1-mooring_data.vapour_press_atm)*constants.mole_fraction_O2));
 
-mooring_data.Henry_law_constant_N2 = mooring_data.N2sol_umkg.*(1./((1-mooring_data.vapour_press_atm)*constants.mole_fraction_N2));
+mooring_data.Henry_law_constant_N2 = mooring_data.N2sol_umolkg.*(1./((1-mooring_data.vapour_press_atm)*constants.mole_fraction_N2));
 
 % We now use our own modificaiton of Eqn. 1 from Emerson 2008 to calculate
 % the partial pressure of N2 in the water (in atm).
@@ -59,8 +59,8 @@ mooring_data.N2_partial_pressure_atm = ((mooring_data.gastension_Pa/(101325)) - 
 
 % We now calculate the timeseries of N2 
 
-mooring_data.N2_umkg = mooring_data.Henry_law_constant_N2.*mooring_data.N2_partial_pressure_atm;
+mooring_data.N2_umolkg = mooring_data.Henry_law_constant_N2.*mooring_data.N2_partial_pressure_atm;
 
-mooring_data.N2_molm3 = (mooring_data.density_kgm3).*mooring_data.N2_umkg.*(10^-6);
+mooring_data.N2_molm3 = (mooring_data.density_kgm3).*mooring_data.N2_umolkg.*(10^-6);
 
-mooring_data.N2sol_molm3 = (mooring_data.density_kgm3).*mooring_data.N2sol_umkg.*(10^-6);
+mooring_data.N2sol_molm3 = (mooring_data.density_kgm3).*mooring_data.N2sol_umolkg.*(10^-6);
