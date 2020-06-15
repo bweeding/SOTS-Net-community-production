@@ -91,10 +91,11 @@ atmospheric_pressure_choice = 1;
 % not available. The presence of a timeseries
 % (mooring_data.atmosphericpress_Pa) will override this value.
 
-atmospheric_pressure_manual_override = 0;
+atmospheric_pressure_manual_override = 0; % default 0
 
 % Setting 'atmospheric_pressure_manual_override' to 1 will override the available 
 % atmospheric pressure vector from the mooring, and use the user specified constant
+% as set by atmospheric_pressure_choice (in atm).
 
 %% Choice 6. Set the default subsurface oxygen concentration if the variable is not available
 
@@ -105,10 +106,11 @@ sub_mld_dox2_choice = 0.264;
 % will override any value given here. 0.264 at a density of 1029.15kg/m^3
 % (typical 500m density) corresponds to ~256.5umol/kg
  
-sub_mld_dox2_manual_override = 0;
+sub_mld_dox2_manual_override = 0; % default 0
 
 % Setting 'sub_mld_dox2_manual_override' to 1 will override the available 
 % sub MLD O2 vector from the mooring, and use the user specified constant
+% as set by sub_mld_dox2_choice (in mol/m^3).
 
 
 %% Choice 7. Decide whether to include eddy diffusion andentrainment

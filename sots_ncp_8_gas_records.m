@@ -41,7 +41,8 @@ mooring_data.vapour_press_atm = mooring_data.vapour_press_kPa/101.325;
 % calculations. 
 
 % We now calculate the Henry's law constants in um/(kg*atm), where the
-% pressure is the partial pressure of the relevant gas. 
+% pressure is the partial pressure of the relevant gas. DO WE NEED TO
+% INVOLVE ATMOSPHERIC PRESSURE HERE?
 
 mooring_data.Henry_law_constant_O2 = mooring_data.dox2_sol_umolkg.*(1./((1-mooring_data.vapour_press_atm)*constants.mole_fraction_O2));
 

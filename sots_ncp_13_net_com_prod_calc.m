@@ -27,11 +27,11 @@ end
 % The rate of change of biological oxygen is calculated, by subtracting the
 % calculated physical rate of change from the measured rate of change.
  
-mooring_data.ddox2bio_dt_umkg = mooring_data.ddox2_dt_umkg - mooring_data.ddox2_phys_dt_umkg;
+mooring_data.ddox2bio_dt_umkg = mooring_data.ddox2_dt_umkg - mooring_data.ddox2_phys_dt_umkg; 
  
 % The final value is set to nan, as we are unable to calculate it.
  
-mooring_data.ddox2bio_dt_umkg(end+1) = nan;
+mooring_data.ddox2bio_dt_umkg(end+1) = nan; 
  
 % The above process is repeated but in moles m^3
 if exchange_choice==1
@@ -58,12 +58,14 @@ mooring_data.ddox2bio_dt_molm3(end+1) = nan;
 % and density, for each time stamp.
  
 mooring_data.ncp_O2_umm2hr = mooring_data.ddox2bio_dt_umkg.*mooring_data.mld_smooth.*mooring_data.density_kgm3;
+
+mooring_data.ncp_O2_umm2hrX = mooring_data.ddox2bio_dt_molm3.*mooring_data.mld_smooth*1E6;
  
 % This is converted into milligrams of carbon per m^2 per hour, dividing
 % by 1E6 and a default Redfield ratio of 1.45 (Anderson and Sarmiento, 1994), 
 % and multiplying by the molar mass of Carbon, and 1000.
  
-mooring_data.ncp_C_mgm2hr = mooring_data.ncp_O2_umm2hr/((1E6)*constants.redfield_AS_1994)*constants.atomic_mass_C*1000;
+mooring_data.ncp_C_mgm2hr = mooring_data.ncp_O2_umm2hr/((1E6)*constants.ncp_oxygen2carbon)*constants.atomic_mass_C*1000;
 
 
 % The NCP estimates are cummulatively summed to arrive at cummulative time
