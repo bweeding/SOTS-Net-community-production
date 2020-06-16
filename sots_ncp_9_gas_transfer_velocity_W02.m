@@ -11,19 +11,19 @@ mooring_data.Sc_O2 = mooring_data.Sc_O2_W92;
 
 
 % We calculate the gas transfer velocity using Wanninkhof (2002)
-for i = 1:length(mooring_data.U_10)
+for i = 1:length(mooring_data.windspeed_ms)
 
-    if mooring_data.U_10(i)<=6
+    if mooring_data.windspeed_ms(i)<=6
 
-        mooring_data.Gc_O2_cmhr(i) = (0.31.*mooring_data.U_10(i).^2).*((mooring_data.Sc_O2(i)./660).^-0.5);
+        mooring_data.Gc_O2_cmhr(i) = (0.31.*mooring_data.windspeed_ms(i).^2).*((mooring_data.Sc_O2(i)./660).^-0.5);
 
-        mooring_data.Gc_N2_cmhr(i) = (0.31.*mooring_data.U_10(i).^2).*((mooring_data.Sc_N2(i)./660).^-0.5);
+        mooring_data.Gc_N2_cmhr(i) = (0.31.*mooring_data.windspeed_ms(i).^2).*((mooring_data.Sc_N2(i)./660).^-0.5);
 
     else
 
-        mooring_data.Gc_O2_cmhr(i) = (0.39.*mooring_data.U_10(i).^2).*((mooring_data.Sc_O2(i)./660).^-0.5);
+        mooring_data.Gc_O2_cmhr(i) = (0.39.*mooring_data.windspeed_ms(i).^2).*((mooring_data.Sc_O2(i)./660).^-0.5);
 
-        mooring_data.Gc_N2_cmhr(i) = (0.39.*mooring_data.U_10(i).^2).*((mooring_data.Sc_N2(i)./660).^-0.5);
+        mooring_data.Gc_N2_cmhr(i) = (0.39.*mooring_data.windspeed_ms(i).^2).*((mooring_data.Sc_N2(i)./660).^-0.5);
 
     end
 

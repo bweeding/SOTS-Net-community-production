@@ -74,7 +74,7 @@ for i = 2:length(mooring_data.time)
     mooring_data.N2_bubbles_molm3(i-1) = mooring_data.N2_molm3(i) - mooring_data.N2_molm3(i-1) - mooring_data.N2_gas_ex_molm3(i-1);
     
     % This rearranges eqn 9 from Emerson et al. 2008 to solve for Vinj, in units of moles per square metre per second
-    mooring_data.Vinj(i-1) = mooring_data.N2_bubbles_molm3(i-1)/(3600*constants.mole_fraction_N2*(1+(1/bubble_beta)*((mooring_data.MDiff_N2(i-1)/mooring_data.MDiff_O2(i-1))^(0.5))*(mooring_data.N2sol_umkg(i-1)/mooring_data.dox2_sol_umolkg(i-1)))/mooring_data.mld_smooth(i)); 
+    mooring_data.Vinj(i-1) = mooring_data.N2_bubbles_molm3(i-1)/(3600*constants.mole_fraction_N2*(1+(1/bubble_beta)*((mooring_data.MDiff_N2(i-1)/mooring_data.MDiff_O2(i-1))^(0.5))*(mooring_data.N2sol_umolkg(i-1)/mooring_data.dox2_sol_umolkg(i-1)))/mooring_data.mld_smooth(i)); 
     
 end
 
