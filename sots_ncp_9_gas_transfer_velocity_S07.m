@@ -9,9 +9,6 @@ mooring_data.Sc_N2 = mooring_data.Sc_N2_W92;
 
 mooring_data.Sc_O2 = mooring_data.Sc_O2_W92;
 
-% We scale up the windspeed using the log layer relationship
-mooring_data.U_10 = 1.1*mooring_data.windspeed_ms;
-
 % We calculate the gas transfer velocity using Sweeney (2007)
 mooring_data.Gc_O2_cmhr = (0.27.*mooring_data.U_10.^2).*((mooring_data.Sc_O2./660).^-0.5);
 
