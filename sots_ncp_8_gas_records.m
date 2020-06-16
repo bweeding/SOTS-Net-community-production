@@ -48,9 +48,9 @@ mooring_data.vapour_press_atm = mooring_data.vapour_press_kPa/101.325;
 % and must thus be corrected for  the presence of water vapour, to yield Henry's law constants for the wet atmosphere.
 
 
-mooring_data.Henry_law_constant_O2 = mooring_data.dox2_sol_umolkg.*(1./((1-mooring_data.vapour_press_atm)*constants.mole_fraction_O2));
+mooring_data.Henry_law_constant_O2 = mooring_data.dox2_sol_umolkg./((1-mooring_data.vapour_press_atm)*constants.mole_fraction_O2);
 
-mooring_data.Henry_law_constant_N2 = mooring_data.N2sol_umolkg.*(1./((1-mooring_data.vapour_press_atm)*constants.mole_fraction_N2));
+mooring_data.Henry_law_constant_N2 = mooring_data.N2sol_umolkg./((1-mooring_data.vapour_press_atm)*constants.mole_fraction_N2);
 
 % We now use our own modificaiton of Eqn. 1 from Emerson 2008 to calculate
 % the partial pressure of N2 in the water (in atm).
