@@ -1,7 +1,7 @@
 % Here we calculate a theoretical 'physical' oxygen record - beginning with
 % the first timestamp's measured O2 value, and calculating how we believe
 % the O2 would change over time, without any biology being present. For
-% this calculation we ignore any entrainment effects.
+% this calculation we include only air-sea gas exchange.
 
 % We preallocate zero arrays used in the for loop
 
