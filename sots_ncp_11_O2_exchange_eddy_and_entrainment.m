@@ -4,7 +4,7 @@
 % Here we calculate a theoretical 'physical' oxygen record - beginning with
 % the first timestamp's measured O2 value, and calculating how we believe
 % the O2 would change over time, without any biology being present. For
-% this calculation we ignore any entrainment effects.
+% this calculation we include air-sea exchange and both eddy diffusion and entrainment across the base of the mixed layer.
 
 % We assign values to the submld oxygen record according to whether it
 % comes from the mooring data, or a user choice
