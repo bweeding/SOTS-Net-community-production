@@ -1,4 +1,4 @@
-% Here we calculate a theoretical 'physical' oxygen record - beginning with
+ % Here we calculate a theoretical 'physical' oxygen record - beginning with
 % the first timestamp's measured O2 value, and calculating how we believe
 % the O2 would change over time, without any biology being present. For
 % this calculation we include only air-sea gas exchange.
@@ -6,7 +6,6 @@
 % We preallocate zero arrays used in the for loop
 
 [mooring_data.GE_dox2_phys_no_ent_molm3, mooring_data.dox2_phys_gas_exchange_no_ent_molm3, mooring_data.dox2_phys_bubbles_no_ent_molm3, mooring_data.dox2_phys_no_ent_molm3] = deal(zeros(size(mooring_data.time)));
-
 % We create a vector representing the physical oxygen record without
 % entrainment, and set its first value to the first measured oxygen value.
 % The physical records here are labelled with no_ent, as neither eddy diffusion

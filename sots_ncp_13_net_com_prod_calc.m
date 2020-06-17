@@ -56,10 +56,8 @@ mooring_data.ddox2bio_dt_molm3(end+1) = nan;
 % The NCP is calculated in micromoles of O2 per m^2 per hour, by
 % multiplying the calculated rate per cubic metre by the mixed layer depth
 % and density, for each time stamp.
- 
-mooring_data.ncp_O2_umm2hr = mooring_data.ddox2bio_dt_umkg.*mooring_data.mld_smooth.*mooring_data.density_kgm3;
 
-mooring_data.ncp_O2_umm2hrX = mooring_data.ddox2bio_dt_molm3.*mooring_data.mld_smooth*1E6;
+mooring_data.ncp_O2_umm2hr = mooring_data.ddox2bio_dt_molm3.*mooring_data.mld_smooth*1E6;
  
 % This is converted into milligrams of carbon per m^2 per hour, dividing
 % by 1E6 and a default Redfield ratio of 1.45 (Anderson and Sarmiento, 1994), 
