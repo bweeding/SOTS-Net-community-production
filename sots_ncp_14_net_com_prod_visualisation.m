@@ -2,16 +2,20 @@ figure('units','normalized','outerposition',[0 0 1 1])
 
 % Plots cummulative net community production
 subplot(3,1,1)
-%plot(mooring_data.time,mooring_data.ncp_O2_umm2_cumsum/1E6,'LineWidth',2)
-plot(mooring_data.time,cumsum(mooring_data.ncp_O2_umm2hr./(mooring_data.mld_smooth)),'LineWidth',2)
-title('Net Community Production')
+yyaxis left
+plot(mooring_data.time,cumsum(mooring_data.ncp_O2_umm2hr./(1E6*mooring_data.mld_smooth)),'LineWidth',2)
+ylabel('mol of O2 per m^{3}')
+
+yyaxis right
+plot(mooring_data.time,mooring_data.ncp_O2_umm2_cumsum./1E6,'LineWidth',2)
+ylabel('mol of O2 per m^{2}')
+title('Net Community Production (cummulative)')
 grid on
-dim = [.81 .66 .1 .1];
-str = strcat('NCP total:',compose("%5.1f",mooring_data.ncp_O2_umm2_cumsum(end)/1E6),'mol of O2');
+dim = [.795 .66 .1 .1];
+str = strcat('NCP total:',compose("%5.1f",mooring_data.ncp_O2_umm2_cumsum(end)/1E6),'mol of O2 m^{-2}');
 annotation('textbox',dim,'String',str,'FitBoxToText','on');
 xlim([mooring_data.time(1) mooring_data.time(end)]);
 datetick('x','mmm','KeepLimits');
-ylabel('mol of O2')
 set(gca,'Fontsize',12)
 
 % Plots smoothed mixed layer depth
@@ -77,8 +81,39 @@ end
 
 
 
-
-
-
+% subplot(2,1,1)
+% yyaxis left
+% plot(mooring_data.time,cumsum(mooring_data.ncp_O2_umm2hr./(1E6*mooring_data.mld_smooth)),'LineWidth',2)
+% ylabel('mol of O2 per m^{3}')
+% 
+% yyaxis right
+% plot(mooring_data.time,mooring_data.ncp_O2_umm2_cumsum./1E6,'LineWidth',2)
+% ylabel('mol of O2 per m^{2}')
+% title('Net Community Production (cummulative)')
+% grid on
+% dim = [.795 .66 .1 .1];
+% str = strcat('NCP total:',compose("%5.1f",mooring_data.ncp_O2_umm2_cumsum(end)/1E6),'mol of O2 m^{-2}');
+% annotation('textbox',dim,'String',str,'FitBoxToText','on');
+% xlim([mooring_data.time(1) mooring_data.time(end)]);
+% datetick('x','mmm','KeepLimits');
+% set(gca,'Fontsize',12)
+% 
+% subplot(2,1,2)
+% yyaxis left
+% plot(mooring_data.time,mooring_data.ncp_O2_umm2hr./mooring_data.mld_smooth,'LineWidth',1.5)
+% ylim([-1000 1000])
+% ylabel('umol of O2 per m^{3} per hour')
+% 
+% yyaxis right
+% plot(mooring_data.time,mooring_data.ncp_O2_umm2hr,'LineWidth',1.5)
+% ylabel('umol of O2 per m^{2}')
+% title('Net Community Production (hourly)')
+% ylim([-1E6 1E6])
+% grid on
+% set(gca,'Fontsize',12)
+% xlim([mooring_data.time(1) mooring_data.time(end)]);
+% datetick('x','mmm','KeepLimits');
+% 
+% 
 
 
