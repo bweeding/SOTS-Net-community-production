@@ -6,20 +6,7 @@ mooring_data.Gc_O2_ms = mooring_data.Gc_O2_cmhr./(100*3600);
 
 mooring_data.Gc_N2_ms = mooring_data.Gc_N2_cmhr./(100*3600);
 
-% If a timeseries of atmospheric pressure is not available in mooring_data, 
-% we use the user defined steady choice
 
-if ~isfield(mooring_data,'atmosphericpress_Pa') || atmospheric_pressure_manual_override
-   
-    mooring_data.atmosphericpress_Pa = (constants.atm_in_Pa*atmospheric_pressure_choice) * ones(size(mooring_data.time));
-    
-    disp(['Atmospheric pressure: Constant user choice of ',num2str(atmospheric_pressure_choice),'atm used.'])
-    
-else
-    
-    disp(strcat('Atmospheric pressure: Timeseries available from mooring used'))
-    
-end
  
 % We use Gc to calculate the rate of exchange of gas between atmosphere and
 % water in moles per m^2 per s, as described in Emerson et al. 2008, eqns 4

@@ -45,7 +45,7 @@
 %% Choice 0. Select the deployment
 % Currently available options are 'pulse7','pulse9','sofs75'
 
-deployment_choice = 'sofs75';
+deployment_choice = 'pulse9';
 
 %% Choice 1. Set the air-sea gas exchange algorithm: 
 airsea_algorithm = 1;  

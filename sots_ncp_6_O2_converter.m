@@ -2,8 +2,20 @@
 
 %%
 
-% add code to multiply dox2 sol by relative atmospheric pressure (compare
-% to 1atm)
+% If a timeseries of atmospheric pressure is not available in mooring_data, 
+% we use the user defined steady choice
+
+if ~isfield(mooring_data,'atmosphericpress_Pa') || atmospheric_pressure_manual_override
+   
+    mooring_data.atmosphericpress_Pa = (constants.atm_in_Pa*atmospheric_pressure_choice) * ones(size(mooring_data.time));
+    
+    disp(['Atmospheric pressure: Constant user choice of ',num2str(atmospheric_pressure_choice),'atm used.'])
+    
+else
+    
+    disp(strcat('Atmospheric pressure: Timeseries available from mooring used'))
+    
+end
 
 % Calculate oxygen saturation
 mooring_data.dox2_sat = mooring_data.dox2_umolkg./(mooring_data.dox2_sol_umolkg.*(mooring_data.atmosphericpress_Pa/constants.atm_in_Pa));

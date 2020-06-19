@@ -162,7 +162,7 @@ elseif exchange_choice==3
     plot(mooring_data.time,mooring_data.sub_mld_dox2_molm3)
     legend('Measured','Solubility','Physical model','Sub MLD')
     ylabel('O2 (mol/m^3)')
-    title('Oxygen record (Atmospheric, eddy and entrrainment exchange)')
+    title('Oxygen record (Atmospheric, eddy and entrainment exchange)')
     xlim([mooring_data.time(1) mooring_data.time(end)])
     datetick('x','mmm','KeepLimits');
     grid on
