@@ -112,7 +112,7 @@ atmospheric_pressure_manual_override = 0; % default 0
 %sub_mld_dox2_choice = 0.264;
 %[the default value of sub_mld_dox2_choice is 0]
 
-sub_mld_dox2_choice = 0.264;
+sub_mld_dox2_choice = 0.28;
 
 % This sets a steady oxygen value below the mixed layer in mol/m^3, if a
 % timeseries is not available. The presence of 'mooring_data.sub_mld_dox2_umolkg'
