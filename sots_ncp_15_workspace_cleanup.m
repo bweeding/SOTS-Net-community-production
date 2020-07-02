@@ -1,5 +1,5 @@
 % Calculates hourly NCP in moles of O2 per cubic metre
-NCP = mooring_data.ncp_O2_umm2hr./mooring_data.mld_smooth*1E6;
+NCP = mooring_data.ncp_O2_molm3hr;
 
 NCP_qc = max(var_names_qc_values,[],1)';
 
@@ -11,27 +11,21 @@ NCP_qc = max(var_names_qc_values,[],1)';
 
 if exchange_choice == 1
     
-    Gas_exchange_oxygen = mooring_data.dox2_phys_gas_exchange_no_ent_molm3;
+    Gas_exchange_oxygen = mooring_data.dox2_gas_exchange_molm2./mooring_data.mld_smooth;
 
-    Bubble_injected_oxygen = mooring_data.dox2_phys_bubbles_no_ent_molm3;
+    Bubble_injected_oxygen = mooring_data.dox2_bubbles_molm2./mooring_data.mld_smooth;
     
-elseif exchange_choice == 2
+end
     
-    Gas_exchange_oxygen = mooring_data.dox2_phys_gas_exchange_ent_molm3;
+if exchange_choice == 2
 
-    Bubble_injected_oxygen = mooring_data.dox2_phys_bubbles_ent_molm3;
-
-    Eddy_diff_oxygen = mooring_data.dox2_phys_eddy_diffusion_ent_molm3;
+    Eddy_diff_oxygen = mooring_data.dox2_eddy_diffusion_molm2./mooring_data.mld_smooth;
     
-elseif exchange_choice == 3    
-
-    Gas_exchange_oxygen = mooring_data.dox2_phys_gas_exchange_ent_molm3;
-
-    Bubble_injected_oxygen = mooring_data.dox2_phys_bubbles_ent_molm3;
-
-    Eddy_diff_oxygen = mooring_data.dox2_phys_eddy_diffusion_ent_molm3;
+end
     
-    Entrained_oxygen = mooring_data.dox2_phys_entrainment_ent_molm3;
+if exchange_choice == 3    
+    
+    Entrained_oxygen = mooring_data.dox2_entrainment_molm2./mooring_data.mld_smooth;
 
 end
 

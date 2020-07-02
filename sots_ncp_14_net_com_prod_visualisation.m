@@ -29,55 +29,87 @@ set(gca,'YDir','reverse')
 grid on
 set(gca,'Fontsize',12)
 
+% Plots oxygen exchange
 subplot(3,1,3)
+hold on
+set(gca,'Fontsize',12)
+plot(mooring_data.time,cumsum(mooring_data.dox2_bubbles_molm2),'LineWidth',2)
+plot(mooring_data.time,cumsum(mooring_data.dox2_gas_exchange_molm2),'LineWidth',2)
+plot(mooring_data.time,cumsum(mooring_data.dox2_biology_molm2),'LineWidth',2)
 
-% Plots measured oxygen, oxygen solubility, and calculated physical oxygen
-if exchange_choice==1
+if exchange_choice == 1
     
-    set(gca,'Fontsize',12)
-    hold on
-    plot(mooring_data.time,mooring_data.dox2_molm3,'LineWidth',2)
-    plot(mooring_data.time,mooring_data.dox2_sol_molm3,'LineWidth',2)
-    plot(mooring_data.time,mooring_data.dox2_phys_molm3,'LineWidth',2)
-    title('Oxygen record (atmospheric exchange only)')
-    legend('Measured','Solubility','Physical model')
-    ylabel('O2 (mol/m^3)')
-    xlim([mooring_data.time(1) mooring_data.time(end)])
-    datetick('x','mmm','KeepLimits');
-    grid on
-
-elseif exchange_choice==2
+    legend('Bubbles','Air-sea gas exchange','Biology');
     
-    set(gca,'Fontsize',12)
-    hold on
-    plot(mooring_data.time,mooring_data.dox2_molm3,'LineWidth',2)
-    plot(mooring_data.time,mooring_data.dox2_sol_molm3,'LineWidth',2)
-    plot(mooring_data.time,mooring_data.dox2_phys_molm3,'LineWidth',2)
-    title('Oxygen record (atmospheric and eddy exchange)')
-    legend('Measured','Solubility','Physical model')
-    ylabel('O2 (mol/m^3)')
-    xlim([mooring_data.time(1) mooring_data.time(end)])
-    datetick('x','mmm','KeepLimits');
-    grid on
+elseif exchange_choice == 2
     
+    plot(mooring_data.time,cumsum(mooring_data.dox2_eddy_diffusion_molm2),'LineWidth',2);
+    legend('Bubbles','Air-sea gas exchange','Biology','Eddy diffusion')
     
-elseif exchange_choice==3
+elseif exchange_choice == 3
     
-        set(gca,'Fontsize',12)
-    hold on
-    plot(mooring_data.time,mooring_data.dox2_molm3,'LineWidth',2)
-    plot(mooring_data.time,mooring_data.dox2_sol_molm3,'LineWidth',2)
-    plot(mooring_data.time,mooring_data.dox2_phys_molm3,'LineWidth',2)
-    title('Oxygen record (atmospheric, eddy, and entrainment exchange)')
-    legend('Measured','Solubility','Physical model')
-    ylabel('O2 (mol/m^3)')
-    xlim([mooring_data.time(1) mooring_data.time(end)])
-    datetick('x','mmm','KeepLimits');
-    grid on
+    plot(mooring_data.time,cumsum(mooring_data.dox2_eddy_diffusion_molm2),'LineWidth',2);
+    plot(mooring_data.time,cumsum(mooring_data.dox2_entrainment_molm2),'LineWidth',2);
+    legend('Bubbles','Air-sea gas exchange','Biology','Eddy diffusion','Entrainment');
     
-elseif exchange_choice==4
+elseif exchange_choice == 4
+    
     
 end
+
+ylabel('Cummulative O2 (mol/m^2)')
+title('Measured oxygen calculated contributions')
+xlim([mooring_data.time(1) mooring_data.time(end)])
+datetick('x','mmm','KeepLimits');
+grid on
+
+% Plots measured oxygen, oxygen solubility, and calculated physical oxygen
+% if exchange_choice==1
+%     
+%     set(gca,'Fontsize',12)
+%     hold on
+%     plot(mooring_data.time,mooring_data.dox2_molm3,'LineWidth',2)
+%     plot(mooring_data.time,mooring_data.dox2_sol_molm3,'LineWidth',2)
+%     plot(mooring_data.time,mooring_data.dox2_phys_molm3,'LineWidth',2)
+%     title('Oxygen record (atmospheric exchange only)')
+%     legend('Measured','Solubility','Physical model')
+%     ylabel('O2 (mol/m^3)')
+%     xlim([mooring_data.time(1) mooring_data.time(end)])
+%     datetick('x','mmm','KeepLimits');
+%     grid on
+% 
+% elseif exchange_choice==2
+%     
+%     set(gca,'Fontsize',12)
+%     hold on
+%     plot(mooring_data.time,mooring_data.dox2_molm3,'LineWidth',2)
+%     plot(mooring_data.time,mooring_data.dox2_sol_molm3,'LineWidth',2)
+%     plot(mooring_data.time,mooring_data.dox2_phys_molm3,'LineWidth',2)
+%     title('Oxygen record (atmospheric and eddy exchange)')
+%     legend('Measured','Solubility','Physical model')
+%     ylabel('O2 (mol/m^3)')
+%     xlim([mooring_data.time(1) mooring_data.time(end)])
+%     datetick('x','mmm','KeepLimits');
+%     grid on
+%     
+%     
+% elseif exchange_choice==3
+%     
+%         set(gca,'Fontsize',12)
+%     hold on
+%     plot(mooring_data.time,mooring_data.dox2_molm3,'LineWidth',2)
+%     plot(mooring_data.time,mooring_data.dox2_sol_molm3,'LineWidth',2)
+%     plot(mooring_data.time,mooring_data.dox2_phys_molm3,'LineWidth',2)
+%     title('Oxygen record (atmospheric, eddy, and entrainment exchange)')
+%     legend('Measured','Solubility','Physical model')
+%     ylabel('O2 (mol/m^3)')
+%     xlim([mooring_data.time(1) mooring_data.time(end)])
+%     datetick('x','mmm','KeepLimits');
+%     grid on
+%     
+% elseif exchange_choice==4
+%     
+% end
 
 
 

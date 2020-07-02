@@ -65,6 +65,9 @@ constants.Sc_B_N2_W92 = 144.86;
 constants.Sc_C_N2_W92 = 4.5413;
 constants.Sc_D_N2_W92 = 0.056988;
 
+% Schmidt number for conversion
+constants.schmidt_CO2_20C_35PSU = 660;
+
 %% sots_ncp_10_N2_excahnge
 
 % Molecular diffusion, using Ferrell and Himmelblau (1967).

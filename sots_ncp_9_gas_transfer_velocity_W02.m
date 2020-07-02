@@ -15,15 +15,15 @@ for i = 1:length(mooring_data.windspeed_ms)
 
     if mooring_data.windspeed_ms(i)<=6
 
-        mooring_data.Gc_O2_cmhr(i) = (0.31.*mooring_data.windspeed_ms(i).^2).*((mooring_data.Sc_O2(i)./660).^-0.5);
+        mooring_data.Gc_O2_cmhr(i) = (0.31.*mooring_data.windspeed_ms(i).^2).*((mooring_data.Sc_O2(i)./constants.schmidt_CO2_20C_35PSU).^-0.5);
 
-        mooring_data.Gc_N2_cmhr(i) = (0.31.*mooring_data.windspeed_ms(i).^2).*((mooring_data.Sc_N2(i)./660).^-0.5);
+        mooring_data.Gc_N2_cmhr(i) = (0.31.*mooring_data.windspeed_ms(i).^2).*((mooring_data.Sc_N2(i)./constants.schmidt_CO2_20C_35PSU).^-0.5);
 
     else
 
-        mooring_data.Gc_O2_cmhr(i) = (0.39.*mooring_data.windspeed_ms(i).^2).*((mooring_data.Sc_O2(i)./660).^-0.5);
+        mooring_data.Gc_O2_cmhr(i) = (0.39.*mooring_data.windspeed_ms(i).^2).*((mooring_data.Sc_O2(i)./constants.schmidt_CO2_20C_35PSU).^-0.5);
 
-        mooring_data.Gc_N2_cmhr(i) = (0.39.*mooring_data.windspeed_ms(i).^2).*((mooring_data.Sc_N2(i)./660).^-0.5);
+        mooring_data.Gc_N2_cmhr(i) = (0.39.*mooring_data.windspeed_ms(i).^2).*((mooring_data.Sc_N2(i)./constants.schmidt_CO2_20C_35PSU).^-0.5);
 
     end
 

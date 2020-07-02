@@ -40,7 +40,7 @@ for i = 2:length(mooring_data.time)
     
     % The rate of gas exchange in mol per square metre per second is calculated
     
-    mooring_data.GE_dox2_molm2(i-1) = (mooring_data.Gc_O2_ms(i-1)*((mooring_data.Sc_O2(i-1)/600).^(-0.5)).*(mooring_data.dox2_molm3(i-1) - (mooring_data.atmosphericpress_Pa(i-1)/constants.atm_in_Pa)*mooring_data.dox2_sol_molm3(i-1)));
+    mooring_data.GE_dox2_molm2(i-1) = (mooring_data.Gc_O2_ms(i-1).*(mooring_data.dox2_molm3(i-1) - (mooring_data.atmosphericpress_Pa(i-1)/constants.atm_in_Pa)*mooring_data.dox2_sol_molm3(i-1)));
     
     % The effect of the gas exchange is calculated at the current time stamp 
     % (the multiplication by 3600 here account for the fact that the rates 

@@ -116,8 +116,10 @@ sub_mld_dox2_choice = 0.28;
 
 % This sets a steady oxygen value below the mixed layer in mol/m^3, if a
 % timeseries is not available. The presence of 'mooring_data.sub_mld_dox2_umolkg'
-% will override any value given here. 0.264 at a density of 1029.15kg/m^3
-% (typical 500m density) corresponds to ~256.5umol/kg
+% will override any value given here. 0.264 (as used in Weeding and Trull, 2014) 
+% at a density of 1029.15kg/m^3 (typical 500m density) corresponds to ~256.5umol/kg
+% An alternate useful choice is the first value in a timeseries, especially
+% when deep mixing has occured eg. 0.28 for Pulse9.
  
 sub_mld_dox2_manual_override = 0; % default 0
 

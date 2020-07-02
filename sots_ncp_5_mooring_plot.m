@@ -1,4 +1,22 @@
 % Plots the data contained in mooring_data
+
+%% Assign atmospheric pressure (allows solubility plotting)
+
+% If a timeseries of atmospheric pressure is not available in mooring_data, 
+% we use the user defined steady choice
+
+if ~isfield(mooring_data,'atmosphericpress_Pa') || atmospheric_pressure_manual_override
+
+    mooring_data.atmosphericpress_Pa = (constants.atm_in_Pa*atmospheric_pressure_choice) * ones(size(mooring_data.time));
+
+    disp(['Atmospheric pressure: Constant user choice of ',num2str(atmospheric_pressure_choice),'atm used.'])
+
+else
+
+    disp(strcat('Atmospheric pressure: Timeseries available from mooring used'))
+
+end
+
 %% Grouped plots
 
 % Produces a plot of temperature and salinity
@@ -21,7 +39,7 @@ yyaxis left
 plot(mooring_data.time,mooring_data.dox2_umolkg)
 ylabel('Measured O2 umol/kg')
 yyaxis right
-plot(mooring_data.time,mooring_data.dox2_sol_umolkg)
+plot(mooring_data.time,(mooring_data.atmosphericpress_Pa/constants.atm_in_Pa).*mooring_data.dox2_sol_umolkg)
 title('Oxygen')
 ylabel('O2 solubility umol/kg')
 xlim([mooring_data.time(1) mooring_data.time(end)])
@@ -46,6 +64,7 @@ subplot(2,2,4)
 yyaxis left
 plot(mooring_data.time,mooring_data.mld_m)
 ylabel('Mixed layer depth m')
+set(gca,'YDir','reverse')
 yyaxis right
 plot(mooring_data.time,mooring_data.windspeed_ms)
 title('Mixed layer depth and windspeed')

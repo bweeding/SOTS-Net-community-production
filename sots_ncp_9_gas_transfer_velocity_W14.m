@@ -10,7 +10,7 @@ mooring_data.Sc_N2 = mooring_data.Sc_N2_W14;
 mooring_data.Sc_O2 = mooring_data.Sc_O2_W14;
 
 % We calculate the gas transfer velocity using Wanninkhof 2014
-mooring_data.Gc_O2_cmhr = (0.251*mooring_data.windspeed_ms.^2).*((mooring_data.Sc_O2./660).^-0.5);
+mooring_data.Gc_O2_cmhr = (0.251*mooring_data.windspeed_ms.^2).*((mooring_data.Sc_O2./constants.schmidt_CO2_20C_35PSU).^-0.5);
 
-mooring_data.Gc_N2_cmhr = (0.251*mooring_data.windspeed_ms.^2).*((mooring_data.Sc_N2./660).^-0.5);
+mooring_data.Gc_N2_cmhr = (0.251*mooring_data.windspeed_ms.^2).*((mooring_data.Sc_N2./constants.schmidt_CO2_20C_35PSU).^-0.5);
 

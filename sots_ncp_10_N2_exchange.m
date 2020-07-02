@@ -1,7 +1,7 @@
 % Calculate required Air-Sea N2 exchange to match N2 record
 
 %%
-% We convert the gas transfer velocity into metres per second.
+% We convert the gas transfer velocities into metres per second.
 mooring_data.Gc_O2_ms = mooring_data.Gc_O2_cmhr./(100*3600);
 
 mooring_data.Gc_N2_ms = mooring_data.Gc_N2_cmhr./(100*3600);

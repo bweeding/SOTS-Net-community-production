@@ -5,6 +5,8 @@
 mooring_data.ncp_O2_molm2hr = mooring_data.dox2_biology_molm2;
 
 mooring_data.ncp_O2_molm3hr = mooring_data.dox2_biology_molm2./mooring_data.mld_smooth;
+
+mooring_data.ncp_O2_umolkghr = 1E6*mooring_data.ncp_O2_molm3hr./mooring_data.density_kgm3;
  
 % This is converted into milligrams of carbon per m^2 per hour, dividing
 % by 1E6 and a default Redfield ratio of 1.45 (Anderson and Sarmiento, 1994), 

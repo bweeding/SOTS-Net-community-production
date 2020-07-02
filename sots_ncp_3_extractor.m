@@ -687,5 +687,7 @@ function [mooring_data] = sots_ncp_extractor(deployment)
         mooring_data.atmosphericpress_Pa = sofs75.CAPH(:,1)*100; % Record is in hPa
 
     end
-
+    
 end
+
+
