@@ -10,11 +10,11 @@ function [mooring_data] = sots_ncp_extractor(deployment)
 
         % Opens the relevant netcdf file
 
-        ncid = netcdf.open('IMOS_ABOS-SOTS_REFOBKGTPCS_20100817_Pulse_FV02_Pulse-7-2010-Gridded-Data_END-20110708_C-20190522.nc');
+        ncid = netcdf.open('IMOS_DWM-SOTS_REFOBKGTPCS_20100817_Pulse_FV02_Pulse-7-2010-Gridded-Data_END-20110708_C-20190522.nc');
 
         % In order to access a summary of the information contained in the netcdf
         % file, you can use the following command
-        % ncdisp('IMOS_ABOS-SOTS_FRVMWEBUOSTCGP_20180628_SOFS_FV02_SOFS-7.5-2018-Gridded-Data_END-20190423_C-20190916.nc')
+        % ncdisp('IMOS_DWM-SOTS_FRVMWEBUOSTCGP_20180628_SOFS_FV02_SOFS-7.5-2018-Gridded-Data_END-20190423_C-20190916.nc')
 
         % We create a cell object containing the names of each of the variables
         % stored in the netcdf. Note that variables in a NetCDF file are indexed
@@ -141,12 +141,12 @@ function [mooring_data] = sots_ncp_extractor(deployment)
         % Here the NetCDF file containing the Pulse 9 data is imported into
         % Matlab. This file must be in Matlab's current folder.
 
-        ncid = netcdf.open('IMOS_ABOS-SOTS_RWOBKFGTPCS_20120619_Pulse_FV02_Pulse-9-2012-Gridded-Data_END-20130523_C-20190522.nc');
+        ncid = netcdf.open('IMOS_DWM-SOTS_RWOBKFGTPCS_20120619_Pulse_FV02_Pulse-9-2012-Gridded-Data_END-20130523_C-20190522.nc');
 
 
         % In order to access a summary of the information contained in the netcdf
         % file, you can use the following command
-        % ncdisp('IMOS_ABOS-SOTS_20130507T080000Z_PULSE_FV01_PULSE-10-2013_END-20131013T210000Z_C-20140603T061703Z.nc')
+        % ncdisp('IMOS_DWM-SOTS_20130507T080000Z_PULSE_FV01_PULSE-10-2013_END-20131013T210000Z_C-20140603T061703Z.nc')
 
         % We create a cell object containing the names of each of the variables
         % stored in the netcdf. Note that variables in a NetCDF file are indexed
@@ -248,7 +248,7 @@ function [mooring_data] = sots_ncp_extractor(deployment)
         % We import the matching sofs3 surface data into Matlab, to access
         % windspeed data.
 
-        ncid2 = netcdf.open('IMOS_ABOS-ASFS_CFMST_20120714T080000Z_SOFS_FV02_SOFS-3-2012_END-20130102T000000Z_C-20180716T064518Z.nc');
+        ncid2 = netcdf.open('IMOS_DWM-ASFS_CFMST_20120714T080000Z_SOFS_FV02_SOFS-3-2012_END-20130102T000000Z_C-20180716T064518Z.nc');
 
         % We perform the same routine as with the Pulse 10 data, to extract the
         % data and place it in a structure named "sofs3".
@@ -330,28 +330,28 @@ function [mooring_data] = sots_ncp_extractor(deployment)
 
         mooring_data.time = pulse9.TIME;
 
-        mooring_data.temp_C = pulse9.TEMP.Sea_BirdElectronics_SBE16plusV2_38_5m;
+        mooring_data.temp_C = pulse9.TEMP.Sea_BirdElectronics_SBE16plusV2_28_5m;
 
         mooring_data.temp_C_qc = pulse9.TEMP_quality_control(:,1);
 
-        mooring_data.psal_PSU = pulse9.PSAL.Sea_BirdElectronics_SBE16plusV2_38_5m;
+        mooring_data.psal_PSU = pulse9.PSAL.Sea_BirdElectronics_SBE16plusV2_28_5m;
 
         mooring_data.psal_PSU_qc = pulse9.PSAL_quality_control(:,1);
 
-        mooring_data.density_kgm3 = pulse9.DENSITY.Sea_BirdElectronics_SBE16plusV2_38_5m;
+        mooring_data.density_kgm3 = pulse9.DENSITY.Sea_BirdElectronics_SBE16plusV2_28_5m;
 
         mooring_data.density_kgm3_qc = pulse9.DENSITY_quality_control(:,1);
 
-        % Aanderaa_Optode3975C_38_5m or Sea_BirdElectronics_SBE43_38_5m
-        mooring_data.dox2_umolkg = pulse9.DOX2.Aanderaa_Optode3975C_38_5m; 
+        % Aanderaa_Optode3975C_38_5m or Sea_BirdElectronics_SBE43_28_5m
+        mooring_data.dox2_umolkg = pulse9.DOX2.Aanderaa_Optode3975C_28_5m; 
 
         mooring_data.dox2_umolkg_qc = pulse9.DOX2_quality_control(:,1);
 
-        mooring_data.dox2_sol_umolkg = pulse9.OXSOL.Sea_BirdElectronics_SBE16plusV2_38_5m;
+        mooring_data.dox2_sol_umolkg = pulse9.OXSOL.Sea_BirdElectronics_SBE16plusV2_28_5m;
 
         mooring_data.dox2_sol_umolkg_qc = pulse9.OXSOL_quality_control(:,1);
 
-        mooring_data.gastension_Pa = pulse9.TOTAL_GAS_PRESSURE.ProOceanus_GTD_38_5m/(1E3); % Record is in millibars in netcdf
+        mooring_data.gastension_Pa = pulse9.TOTAL_GAS_PRESSURE.ProOceanus_GTD_28_5m/(1E3); % Record is in millibars in netcdf
 
         mooring_data.gastension_Pa_qc = pulse9.TOTAL_GAS_PRESSURE_quality_control;
 
@@ -375,11 +375,11 @@ function [mooring_data] = sots_ncp_extractor(deployment)
         % Here the NetCDF file containing the Pulse 9 data is imported into
         % Matlab. This file must be in Matlab's current folder.
 
-        ncid = netcdf.open('IMOS_ABOS-SOTS_FRVMWEBUOSTCGP_20180628_SOFS_FV02_SOFS-7.5-2018-Gridded-Data_END-20190423_C-20190916.nc');
+        ncid = netcdf.open('IMOS_DWM-SOTS_FRVMWEBUOSTCGP_20180628_SOFS_FV02_SOFS-7.5-2018-Gridded-Data_END-20190423_C-20190916.nc');
 
         % In order to access a summary of the information contained in the netcdf
         % file, you can use the following command
-        % ncdisp('IMOS_ABOS-SOTS_FRVMWEBUOSTCGP_20180628_SOFS_FV02_SOFS-7.5-2018-Gridded-Data_END-20190423_C-20190916.nc')
+        % ncdisp('IMOS_DWM-SOTS_FRVMWEBUOSTCGP_20180628_SOFS_FV02_SOFS-7.5-2018-Gridded-Data_END-20190423_C-20190916.nc')
 
         % We create a cell object containing the names of each of the variables
         % stored in the netcdf. Note that variables in a NetCDF file are indexed
