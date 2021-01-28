@@ -1,6 +1,6 @@
 % Loads the constants used throughout the SOTS NCP calculation
 % Constants are listed under the script in which they are first used
-%% sots_ncp_8_O2_converter
+%% sots_ncp_6_O2_converter
 constants.atm_in_Pa = 101325;
 
 %% sots_ncp_8_gas_records
@@ -35,7 +35,7 @@ constants.mole_fraction_Ar = 0.00934;
 constants.mole_fraction_CO2 = 0.000387;
 constants.mole_fraction_O2 = 0.20946;
 
-%% sots_ncp_gas_transfer_velocity_X
+%% sots_ncp_9_gas_transfer_velocity_X
 
 % Schmidt constants from Wanninkhof (14)
 %Oxygen
@@ -85,7 +85,7 @@ constants.gas_constant = 8.3144621;
 % Salinity adjustment
 constants.Jahne_sal_co = 0.049;
 
-%% sots_ncp_net_com_prod_calc
+%% sots_ncp_13_net_com_prod_calc
 % This is the NCP ratio of carbon to O2 from Anderson and Sarmiento (1994)
 constants.ncp_oxygen2carbon = 1.45; %Redfield AS 1994
 
