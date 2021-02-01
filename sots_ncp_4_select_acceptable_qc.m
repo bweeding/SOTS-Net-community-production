@@ -40,7 +40,16 @@ for i = 1:length(var_names_check_qc)
     
         % sets start_good to the highest of: itself or the highest index 
         % of a change of 1 for the current variable
-        start_good = max(start_good,find(qc_change_idx==1,1));
+        if~(any(qc_change_idx==1)) 
+
+            start_good = 1;
+
+        else
+
+            start_good = max(start_good,find(qc_change_idx==1,1));
+
+        end
+
         
         % sets end_good to the lowest of: itself or the lowest index 
         % of a change of 1 for the current variable

@@ -141,7 +141,7 @@ function [mooring_data] = sots_ncp_extractor(deployment)
         % Here the NetCDF file containing the Pulse 9 data is imported into
         % Matlab. This file must be in Matlab's current folder.
 
-        ncid = netcdf.open('IMOS_ABOS-SOTS_RWBKGOTPCS_20120619_Pulse_FV02_Pulse-9-2012-Gridded-Data_END-20130510_C-20190910.nc');
+        ncid = netcdf.open('IMOS_ABOS-SOTS_RWBKGOTPCS_20120619_Pulse_FV02_Pulse-9-2012-Gridded-Data_END-20130510_C-20210131.nc');
 
 
         % In order to access a summary of the information contained in the netcdf
@@ -334,11 +334,11 @@ function [mooring_data] = sots_ncp_extractor(deployment)
 
         mooring_data.temp_C_qc = pulse9.TEMP_quality_control(:,1);
 
-        mooring_data.psal_PSU = pulse9.PSAL.Sea_BirdElectronics_SBE16plusV2_38_5m;
+        mooring_data.psal_PSU = pulse9.PSAL.Sea_BirdElectronics_SBE16plusV2_28_5m;
 
         mooring_data.psal_PSU_qc = pulse9.PSAL_quality_control(:,1);
 
-        mooring_data.density_kgm3 = pulse9.DENSITY.Sea_BirdElectronics_SBE16plusV2_38_5m;
+        mooring_data.density_kgm3 = pulse9.DENSITY.Sea_BirdElectronics_SBE16plusV2_28_5m;
 
         mooring_data.density_kgm3_qc = pulse9.DENSITY_quality_control(:,1);
 
@@ -347,7 +347,7 @@ function [mooring_data] = sots_ncp_extractor(deployment)
 
         mooring_data.dox2_umolkg_qc = pulse9.DOX2_quality_control(:,1);
 
-        mooring_data.dox2_sol_umolkg = pulse9.OXSOL.Sea_BirdElectronics_SBE16plusV2_38_5m;
+        mooring_data.dox2_sol_umolkg = pulse9.OXSOL.Sea_BirdElectronics_SBE16plusV2_28_5m;
 
         mooring_data.dox2_sol_umolkg_qc = pulse9.OXSOL_quality_control(:,1);
 
