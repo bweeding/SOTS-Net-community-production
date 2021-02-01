@@ -1,7 +1,7 @@
 % Adds the required paths to the matlab session - modify as needed
 
 % Folder containing netcdfs
-addpath('/Users/tru050/Desktop/SOTS/SOTS work/SOTS netcdfs from Pete/Current netcdfs')
+addpath('C:\Users\cawynn\Documents\GitHub\SOTS-Net-community-production\netCDF files')
 
 % Folder containing code
-addpath('/Users/tru050/Documents/GitHub/SOTS-Net-community-production')
+addpath('C:\Users\cawynn\Documents\GitHub\SOTS-Net-community-production')

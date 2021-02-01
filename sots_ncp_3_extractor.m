@@ -14,7 +14,7 @@ function [mooring_data] = sots_ncp_extractor(deployment)
 
         % In order to access a summary of the information contained in the netcdf
         % file, you can use the following command
-        % ncdisp('IMOS_DWM-SOTS_FRVMWEBUOSTCGP_20180628_SOFS_FV02_SOFS-7.5-2018-Gridded-Data_END-20190423_C-20190916.nc')
+        % ncdisp('IMOS_DWM-SOTS_REFOBKGTPCS_20100817_Pulse_FV02_Pulse-7-2010-Gridded-Data_END-20110708_C-20190522.nc')
 
         % We create a cell object containing the names of each of the variables
         % stored in the netcdf. Note that variables in a NetCDF file are indexed
@@ -141,12 +141,12 @@ function [mooring_data] = sots_ncp_extractor(deployment)
         % Here the NetCDF file containing the Pulse 9 data is imported into
         % Matlab. This file must be in Matlab's current folder.
 
-        ncid = netcdf.open('IMOS_DWM-SOTS_RWOBKFGTPCS_20120619_Pulse_FV02_Pulse-9-2012-Gridded-Data_END-20130523_C-20190522.nc');
+        ncid = netcdf.open('IMOS_ABOS-SOTS_RWBKGOTPCS_20120619_Pulse_FV02_Pulse-9-2012-Gridded-Data_END-20130510_C-20210131.nc');
 
 
         % In order to access a summary of the information contained in the netcdf
         % file, you can use the following command
-        % ncdisp('IMOS_DWM-SOTS_20130507T080000Z_PULSE_FV01_PULSE-10-2013_END-20131013T210000Z_C-20140603T061703Z.nc')
+        % ncdisp('IMOS_ABOS-SOTS_RWBKGOTPCS_20120619_Pulse_FV02_Pulse-9-2012-Gridded-Data_END-20130510_C-20190910.nc')
 
         % We create a cell object containing the names of each of the variables
         % stored in the netcdf. Note that variables in a NetCDF file are indexed
@@ -250,7 +250,7 @@ function [mooring_data] = sots_ncp_extractor(deployment)
 
         ncid2 = netcdf.open('IMOS_DWM-ASFS_CFMST_20120714T080000Z_SOFS_FV02_SOFS-3-2012_END-20130102T000000Z_C-20180716T064518Z.nc');
 
-        % We perform the same routine as with the Pulse 10 data, to extract the
+        % We perform the same routine as with the Pulse 9 data, to extract the
         % data and place it in a structure named "sofs3".
 
         varnames2 = cell(size(netcdf.inqVarIDs(ncid2)));
@@ -301,7 +301,7 @@ function [mooring_data] = sots_ncp_extractor(deployment)
 
         % As sofs3 surface data has been recorded in minute intervals, from a
         % different starting date to Pulse 10, here we create a time index to
-        % subsample the sofs3 data to align it with Pulse 10 sampling.
+        % subsample the sofs3 data to align it with Pulse 9 sampling.
 
         % This results in the following being true:
         % sofs3.TIME(sofs3timeindex) = pulse9.TIME
@@ -342,7 +342,7 @@ function [mooring_data] = sots_ncp_extractor(deployment)
 
         mooring_data.density_kgm3_qc = pulse9.DENSITY_quality_control(:,1);
 
-        % Aanderaa_Optode3975C_38_5m or Sea_BirdElectronics_SBE43_28_5m
+        % Aanderaa_Optode3975C_38_5m or Sea_BirdElectronics_SBE43_38_5m
         mooring_data.dox2_umolkg = pulse9.DOX2.Aanderaa_Optode3975C_28_5m; 
 
         mooring_data.dox2_umolkg_qc = pulse9.DOX2_quality_control(:,1);
@@ -372,14 +372,14 @@ function [mooring_data] = sots_ncp_extractor(deployment)
         %     
         %     addpath('C:\xx\xx\data_folder\composite1.dat')
 
-        % Here the NetCDF file containing the Pulse 9 data is imported into
+        % Here the NetCDF file containing the SOFS-7.5 data is imported into
         % Matlab. This file must be in Matlab's current folder.
 
-        ncid = netcdf.open('IMOS_DWM-SOTS_FRVMWEBUOSTCGP_20180628_SOFS_FV02_SOFS-7.5-2018-Gridded-Data_END-20190423_C-20190916.nc');
+        ncid = netcdf.open('IMOS_ABOS-SOTS_FRVMWEBUOSTCGP_20180628_SOFS_FV02_SOFS-7.5-2018-Gridded-Data_END-20190423_C-20190916.nc');
 
         % In order to access a summary of the information contained in the netcdf
         % file, you can use the following command
-        % ncdisp('IMOS_DWM-SOTS_FRVMWEBUOSTCGP_20180628_SOFS_FV02_SOFS-7.5-2018-Gridded-Data_END-20190423_C-20190916.nc')
+        % ncdisp('IMOS_ABOS-SOTS_FRVMWEBUOSTCGP_20180628_SOFS_FV02_SOFS-7.5-2018-Gridded-Data_END-20190423_C-20190916.nc')
 
         % We create a cell object containing the names of each of the variables
         % stored in the netcdf. Note that variables in a NetCDF file are indexed
